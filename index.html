@@ -2,65 +2,47 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Notis Live Radio</title>
+  <title>Notis Web Radio</title>
   <style>
     html, body {
       margin: 0;
       padding: 0;
       height: 100%;
-      font-family: sans-serif;
       background: url('notis-sfakianakis.jpg') no-repeat center center fixed;
       background-size: cover;
+      font-family: sans-serif;
       color: white;
-      text-align: center;
       display: flex;
       justify-content: center;
       align-items: center;
+      text-align: center;
     }
     .box {
-      background-color: rgba(0, 0, 0, 0.65);
-      padding: 40px;
-      border-radius: 12px;
-      max-width: 90%;
-      box-shadow: 0 0 20px #000;
-    }
-    h1 {
-      font-size: 2.5em;
-      margin-bottom: 0.3em;
-    }
-    p {
-      font-size: 1.2em;
-      margin-bottom: 1em;
+      background: rgba(0, 0, 0, 0.7);
+      padding: 30px;
+      border-radius: 10px;
     }
     audio {
-      width: 100%;
-      max-width: 400px;
-      margin-bottom: 1em;
+      width: 300px;
+      margin-top: 20px;
     }
     button {
+      margin-top: 15px;
       padding: 10px 20px;
-      font-size: 1em;
       background-color: #e91e63;
       color: white;
       border: none;
-      border-radius: 8px;
+      border-radius: 5px;
       cursor: pointer;
-    }
-    button:hover {
-      background-color: #c2185b;
-    }
-    @media (max-width: 600px) {
-      h1 { font-size: 1.8em; }
-      .box { padding: 20px; }
     }
   </style>
 </head>
 <body>
   <div class="box">
-    <h1>Notis Sfakianakis Web Radio</h1>
-    <p>🎵 LIVE STREAM</p>
+    <h1>🎧 Notis Sfakianakis Radio</h1>
+    <p>Live stream από Icecast Server</p>
     <audio id="player" controls autoplay>
-      <source id="source" src="http://localhost:8000/stream" type="audio/mpeg">
+      <source id="source" src="http://123.45.67.89:8000/stream" type="audio/mpeg">
       Your browser does not support the audio element.
     </audio>
     <br>
@@ -71,8 +53,8 @@
     function goLive() {
       const player = document.getElementById('player');
       const source = document.getElementById('source');
-      const liveURL = "http://localhost:8000/stream?t=" + new Date().getTime();
-      source.src = liveURL;
+      const url = "http://123.45.67.89:8000/stream?t=" + new Date().getTime();
+      source.src = url;
       player.load();
       player.play();
     }
