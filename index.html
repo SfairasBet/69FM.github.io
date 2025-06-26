@@ -4,29 +4,48 @@
   <meta charset="UTF-8">
   <title>Notis Live Radio</title>
   <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+    }
     body {
       background: url('https://2810.gr/wp-content/uploads/2025/03/notis-sfakianakis-epistrofi-pistes.webp') no-repeat center center fixed;
       background-size: cover;
       color: white;
       font-family: sans-serif;
       text-align: center;
-      padding-top: 100px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
     }
     .box {
-      background-color: rgba(0, 0, 0, 0.6);
-      padding: 30px;
-      border-radius: 12px;
-      display: inline-block;
+      background-color: rgba(0, 0, 0, 0.7);
+      padding: 40px;
+      border-radius: 15px;
+      max-width: 90%;
+    }
+    h1 {
+      font-size: 2.5em;
+      margin-bottom: 10px;
+    }
+    p {
+      font-size: 1.2em;
     }
     button {
       margin-top: 20px;
-      padding: 10px 20px;
+      padding: 12px 24px;
       font-size: 1em;
       background-color: #e91e63;
       border: none;
       color: white;
       border-radius: 8px;
       cursor: pointer;
+    }
+    audio {
+      margin-top: 20px;
+      width: 100%;
+      max-width: 400px;
     }
   </style>
 </head>
@@ -46,11 +65,8 @@
     function goLive() {
       const player = document.getElementById('player');
       const source = document.getElementById('source');
-
-      // Προσθέτουμε ένα fake timestamp για να πάρει νέα σύνδεση
       const liveURL = "http://localhost:8000/stream?t=" + new Date().getTime();
       source.src = liveURL;
-
       player.load();
       player.play();
     }
