@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Notis Live Radio</title>
+  <style>
+    body {
+      background: url('notis-sfakianakis.jpg') no-repeat center center fixed;
+      background-size: cover;
+      color: white;
+      font-family: sans-serif;
+      text-align: center;
+      padding-top: 100px;
+    }
+    .box {
+      background-color: rgba(0, 0, 0, 0.6);
+      padding: 30px;
+      border-radius: 12px;
+      display: inline-block;
+    }
+    button {
+      margin-top: 20px;
+      padding: 10px 20px;
+      font-size: 1em;
+      background-color: #e91e63;
+      border: none;
+      color: white;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <div class="box">
+    <h1>Notis Sfakianakis Web Radio</h1>
+    <p>🎵 LIVE STREAM</p>
+    <audio id="player" controls autoplay>
+      <source id="source" src="http://localhost:8000/stream" type="audio/mpeg">
+      Your browser does not support the audio element.
+    </audio>
+    <br>
+    <button onclick="goLive()">🔄 Go LIVE</button>
+  </div>
+
+  <script>
+    function goLive() {
+      const player = document.getElementById('player');
+      const source = document.getElementById('source');
+
+      // Προσθέτουμε ένα fake timestamp για να πάρει νέα σύνδεση
+      const liveURL = "http://localhost:8000/stream?t=" + new Date().getTime();
+      source.src = liveURL;
+
+      player.load();
+      player.play();
+    }
+  </script>
+</body>
+</html>
