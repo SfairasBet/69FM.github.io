@@ -1,83 +1,42 @@
 <!DOCTYPE html>
-<html lang="el">
+<html>
 <head>
   <meta charset="UTF-8">
-  <title>Notis Sfakianakis Web Radio</title>
-  <link rel="icon" type="image/x-icon" href="clarinet.png">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Notis Live Radio</title>
   <style>
     body {
-      margin: 0;
-      padding: 0;
-      font-family: Arial, sans-serif;
-      background-image: url('https://69fm.github.io/notis.jpg');
-
+      background: url('notis.jpg') no-repeat center center fixed;
       background-size: cover;
-      background-repeat: no-repeat;
-      background-attachment: fixed;
-      color: rgb(236, 8, 8);
+      color: white;
+      font-family: sans-serif;
       text-align: center;
+      padding-top: 100px;
     }
-
-    .container {
-      max-width: 800px;
-      margin: 100px auto 50px auto;
+    .box {
+      background-color: rgba(0, 0, 0, 0.6);
       padding: 30px;
-      background-color: rgba(240, 240, 240, 0.6);
-      border-radius: 10px;
-      border: 2px solid #e40e0e;
-      box-shadow: 0 0 10px rgba(0,0,0,0.5);
+      border-radius: 12px;
+      display: inline-block;
     }
-
-    h1 {
-      font-size: 2.5em;
-      margin-bottom: 10px;
-    }
-
-    p {
-      font-size: 1.2em;
-      margin-bottom: 30px;
-    }
-
-    audio {
-      width: 100%;
-      max-width: 500px;
-      margin-bottom: 20px;
-    }
-
     button {
-      padding: 12px 24px;
+      margin-top: 20px;
+      padding: 10px 20px;
       font-size: 1em;
       background-color: #e91e63;
       border: none;
       color: white;
       border-radius: 8px;
       cursor: pointer;
-      transition: background-color 0.3s ease;
-    }
-
-    button:hover {
-      background-color: #c2185b;
-    }
-
-    @media (max-width: 600px) {
-      .container {
-        margin: 50px 10px;
-        padding: 20px;
-      }
-      h1 {
-        font-size: 1.8em;
-      }
     }
   </style>
 </head>
 <body>
-  <div class="container">
-    <h1>🎧 Notis Sfakianakis Radio</h1>
-    <p>Ζωντανά 24/7 από τον Icecast Server</p>
+  <div class="box">
+    <h1>Notis Sfakianakis Web Radio</h1>
+    <p>🎵 LIVE STREAM</p>
     <audio id="player" controls autoplay>
-      <source id="source" src="http://123.45.67.89:8000/stream" type="audio/mpeg">
-      Ο browser σας δεν υποστηρίζει τον audio player.
+      <source id="source" src="http://localhost:8000/stream" type="audio/mpeg">
+      Your browser does not support the audio element.
     </audio>
     <br>
     <button onclick="goLive()">🔄 Go LIVE</button>
@@ -87,8 +46,11 @@
     function goLive() {
       const player = document.getElementById('player');
       const source = document.getElementById('source');
-      const url = "http://123.45.67.89:8000/stream?t=" + new Date().getTime();
-      source.src = url;
+
+      // Προσθέτουμε ένα fake timestamp για να πάρει νέα σύνδεση
+      const liveURL = "http://localhost:8000/stream?t=" + new Date().getTime();
+      source.src = liveURL;
+
       player.load();
       player.play();
     }
