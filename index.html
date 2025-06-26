@@ -5,12 +5,13 @@
   <title>Notis Live Radio</title>
   <style>
     body {
-      background: url('notis.jpg') no-repeat center center fixed;
+      background: url('https://69fm.github.io/notis.jpg') no-repeat center center fixed;
       background-size: cover;
       color: white;
       font-family: sans-serif;
       text-align: center;
       padding-top: 100px;
+      margin: 0;
     }
     .box {
       background-color: rgba(0, 0, 0, 0.6);
@@ -32,10 +33,10 @@
 </head>
 <body>
   <div class="box">
-    <h1>Web Radio</h1>
-    <p>All Time Classic Notis</p>
+    <h1>🎧 Notis Sfakianakis Web Radio</h1>
+    <p>🎵 LIVE STREAM από Icecast</p>
     <audio id="player" controls autoplay>
-      <source id="source" src="http://localhost:8000/stream" type="audio/mpeg">
+      <source id="source" src="http://192.168.1.42:8000/stream" type="audio/mpeg">
       Your browser does not support the audio element.
     </audio>
     <br>
@@ -46,11 +47,8 @@
     function goLive() {
       const player = document.getElementById('player');
       const source = document.getElementById('source');
-
-      // Προσθέτουμε ένα fake timestamp για να πάρει νέα σύνδεση
-      const liveURL = "http://localhost:8000/stream?t=" + new Date().getTime();
+      const liveURL = "http://192.168.1.42:8000/stream?t=" + new Date().getTime();
       source.src = liveURL;
-
       player.load();
       player.play();
     }
